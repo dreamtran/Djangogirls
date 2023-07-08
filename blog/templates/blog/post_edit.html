@@ -4,7 +4,9 @@
 {% block content %}
     <h2>New post</h2>
     <form method="POST" class="post-form">{% csrf_token %}
+        <!-- Render form fields as paragraphs -->
         {{ form.as_p }}
+        <!-- Button to submit the form -->
         <button type="submit" class="save btn btn-secondary">Save</button>
     </form>
 {% endblock %}
