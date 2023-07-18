@@ -17,12 +17,19 @@
     <body>
         <header class="page-header">
             <div class="container">
-              {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
                 <!-- Display a link to create a new post if the user is authenticated -->
                 <a href="{% url 'post_new' %}" class="top-menu">
                     {% include './icons/file-earmark-plus.svg' %}
                 </a>
-              {% endif %}
+                <a href="{% url 'post_draft_list' %}" class="top-menu">
+                    {% include './icons/draft-svgrepo-com.svg' %}
+                </a>
+                <a href="{% url 'logout' %}" class="top-menu">{% include './icons/logout.svg' %}</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="top-menu">
+                {% include './icons/login.svg' %}</a>
+            {% endif %}
                 <h1><a href="/">Django Girls Blog</a></h1>
             </div>
         </header>
@@ -37,6 +44,7 @@
                             </time>
                             <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
                             <p>{{ post.text|linebreaksbr }}</p>
+                            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
                         </article>
                     {% endfor %}
                 </div>
@@ -44,7 +52,7 @@
         </main>
     </body>
 </html>
-I added comments above each section to provide an explanation of what each part does. Let me know if there's anything else you need assistance with!
+
 
 
 
